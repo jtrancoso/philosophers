@@ -52,8 +52,8 @@ int	ft_error(int flag)
 
 int	check_errors(int argc, char **argv)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	if (argc <= 4 || argc > 6)
