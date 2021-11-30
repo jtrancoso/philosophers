@@ -9,9 +9,9 @@
 typedef struct s_philo
 {
 	int	number;
-	int	death;
-	int eat;
-	int sleep;
+	int	tt_die;
+	int tt_eat;
+	int tt_sleep;
 	int	loop;
 
 }		t_philo;
