@@ -3,6 +3,7 @@ SRCS =	main.c \
 		
 OBJS = ${SRCS:.c=.o}
 NAME = philo
+THREADS = -pthread
 CC = gcc
 RM = rm -f
 
@@ -10,7 +11,7 @@ RM = rm -f
 		${CC} -g3 -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-			$(CC) -fsanitize=address -g3 ${OBJS} -o ${NAME}
+			$(CC) ${THREADS} -fsanitize=address -g3 ${OBJS} -o ${NAME}
 # COMPILAR MAC $(CC) -fsanitize=address -g -L libft/ -lft ${OBJS} -o ${NAME}
 # COMPILAR LINUX $(CC) -fsanitize=address -g -o ${NAME} ${OBJS} -lz -L libft/ -lft -lm
 

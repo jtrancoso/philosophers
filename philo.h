@@ -6,15 +6,25 @@
 #include <unistd.h>
 #include <sys/time.h>
 
-typedef struct s_philo
+typedef struct	s_philo
 {
-	int	number;
-	int	tt_die;
-	int tt_eat;
-	int tt_sleep;
-	int	loop;
+	int				full;
+	time_t			last_meal;
+	pthread_t		thread;
+	pthread_mutex_t	fork;
+}				t_philo;
 
-}		t_philo;
+typedef struct s_data
+{
+	int		number;
+	int		tt_die;
+	int		tt_eat;
+	int		tt_sleep;
+	int		loop;
+	time_t	start_time;
+	t_philo	*philo;
+
+}		t_data;
 
 int	ft_isdigit(int c);
 int	ft_atoi(const char *s);
