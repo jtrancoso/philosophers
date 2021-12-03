@@ -11,9 +11,9 @@ RM = rm -f
 		${CC} -g3 -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-			$(CC) ${THREADS} -fsanitize=address -g3 ${OBJS} -o ${NAME}
-# COMPILAR MAC $(CC) -fsanitize=address -g -L libft/ -lft ${OBJS} -o ${NAME}
-# COMPILAR LINUX $(CC) -fsanitize=address -g -o ${NAME} ${OBJS} -lz -L libft/ -lft -lm
+			$(CC) -fsanitize=address -g3 ${OBJS} -o ${NAME} -pthread
+# COMPILAR MAC $(CC) -fsanitize=address -g ${OBJS} -o ${NAME}
+# COMPILAR LINUX $(CC) -fsanitize=address -g -o ${NAME} ${OBJS}
 
 all:		${NAME}
 
