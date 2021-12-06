@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jtrancos <jtrancos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/06 16:55:38 by jtrancos          #+#    #+#             */
+/*   Updated: 2021/12/06 16:55:38 by jtrancos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	ft_atoi(const char *s)
@@ -74,4 +86,12 @@ int	check_errors(int argc, char **argv)
 	if (ft_atoi(argv[2]) < 60)
 		return (ft_error(4));
 	return (0);
+}
+
+time_t ft_gettime(void)
+{
+	struct timeval	time;
+	
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }

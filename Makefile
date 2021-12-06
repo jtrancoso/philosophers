@@ -1,5 +1,8 @@
 SRCS =	main.c \
-		philo_utils.c
+		philo_utils.c \
+		philo_utils2.c \
+		init_philo.c \
+		eating_loop.c
 		
 OBJS = ${SRCS:.c=.o}
 NAME = philo
@@ -24,7 +27,7 @@ fclean : 	clean
 			${RM} ${NAME}
 
 leaks:		${OBJS}
-			$(CC) -g3  ${OBJS} -o ${NAME}
+			$(CC) -g3  ${OBJS} -o ${NAME} -pthread
 
 re:			fclean all
 
