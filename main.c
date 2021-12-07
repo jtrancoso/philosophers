@@ -12,6 +12,8 @@
 
 #include "philo.h"
 
+//FIXME: da segfault cuando muere un philo y esta el atexit puesto, si es por que todos han comido, no pasa
+
 void	miraleaks(void)
 {
 	system("leaks philo");
@@ -22,20 +24,26 @@ void	*lets_die(void *argv)
 	int		i;
 	t_data	*data;
 	time_t	time;
+	int		count;
 
 	data = (t_data *) argv;
 	while (1)
 	{
 		i = 0;
+		count = 0;
 		while (i < data->number)
 		{
 			time = ft_gettime();
 			pthread_mutex_lock(&data->print);
-			printf("i: %d\n", i);
-			printf("suma: %ld, time: %ld diff: %ld\n", data->philo[i].last_meal + data->tt_die, time, time - data->philo[i].last_meal + data->tt_die);
 			if (data->philo[i].last_meal + data->tt_die < time)
 				return (print_status(data->philo, time, data->philo[i].index, 4));
 			pthread_mutex_unlock(&data->print);
+			count += data->philo[i].full;
+			if (count == data->number)
+			{
+				pthread_mutex_lock(&data->print);
+				return (print_status(data->philo, time, data->philo[i].index, 5));
+			}
 			i++;
 		}
 	}
@@ -64,6 +72,32 @@ void	create_threads(t_data *data)
 	}
 }
 
+/*void	end_threads(t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (i < data->number)
+	{
+		pthread_mutex_destroy(&data->philo[i].fork);
+		i++;
+	}
+	printf("destruidos\n");
+}*/
+
+void	free_philo(t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (i < data->number)
+	{
+		pthread_join(data->philo[i].thread, NULL);
+		i++;
+	}
+	free(data->philo);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -75,13 +109,12 @@ int	main(int argc, char **argv)
 		return (1);
 	init_things(&data, argc, argv);
 	init_philos(&data);
-	create_threads(&data);
-	/*while (i < data.number)
+	if (data.meals != 0)
 	{
-		pthread_join(data.philo[i].thread, NULL);
-		i++;
-	}*/
-	death_threads(&data);
-	printf("n: %d death: %d eat: %d sleep: %d loop: %d\n", data.number, data.tt_die, data.tt_eat, data.tt_sleep, data.loop);
+		create_threads(&data);
+		death_threads(&data);
+	}
+	free(data.philo);
+	//free_philo(&data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jtrancos <jtrancos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:54:33 by jtrancos          #+#    #+#             */
-/*   Updated: 2021/12/06 16:55:21 by jtrancos         ###   ########.fr       */
+/*   Updated: 2021/12/07 14:10:07 by jtrancos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	init_things(t_data *data, int argc, char **argv)
 {
-	data->loop = 0;
+	data->meals = -1;
 	data->control = 0;
 	data->number = ft_atoi(argv[1]);
 	data->tt_die = ft_atoi(argv[2]);
 	data->tt_eat = ft_atoi(argv[3]);
 	data->tt_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
-		data->loop = ft_atoi(argv[5]);
+		data->meals = ft_atoi(argv[5]);
 	data->start_time = ft_gettime();
 }
 

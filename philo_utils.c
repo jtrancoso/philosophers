@@ -57,7 +57,7 @@ int	ft_error(int flag)
 	if (flag == 3)
 		printf("Error. Number of philosophers cannot exceed 200\n");
 	if (flag == 4)
-		printf("Error. Time to die cannot be lower than 10\n");
+		printf("Error. Time to die cannot be lower than 60\n");
 	return (1);
 
 }

@@ -35,7 +35,7 @@ typedef struct s_data
 	int				tt_die;
 	int				tt_eat;
 	int				tt_sleep;
-	int				loop;
+	int				meals;
 	int				control;
 	time_t			start_time;
 	pthread_t		check_death;
@@ -56,7 +56,7 @@ void	ft_sleep(time_t time);
 void	ft_delay(t_philo *philo, int i);
 void	*lets_eat(void *argv);
 void	take_fork(t_philo *philo, int i, int next);
-void	sleep_think(t_philo *philo, int i, int next);
+void	sleep_think(t_philo *philo, int i, int next, int loop);
 
 
 

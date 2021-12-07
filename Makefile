@@ -27,7 +27,7 @@ fclean : 	clean
 			${RM} ${NAME}
 
 leaks:		${OBJS}
-			$(CC) -g3  ${OBJS} -o ${NAME} -pthread
+			$(CC) ${OBJS} -o ${NAME} -pthread
 
 re:			fclean all
 
