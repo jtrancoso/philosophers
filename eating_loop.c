@@ -6,7 +6,7 @@
 /*   By: jtrancos <jtrancos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:58:28 by jtrancos          #+#    #+#             */
-/*   Updated: 2021/12/07 14:31:48 by jtrancos         ###   ########.fr       */
+/*   Updated: 2021/12/07 17:29:37 by jtrancos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ void	sleep_think(t_philo *philo, int i, int next, int loop)
 	pthread_mutex_unlock(&philo->data->print);
 }
 
-
-void *lets_eat(void *argv)
+void	*lets_eat(void *argv)
 {
 	t_philo	*philo;
 	int		order;
@@ -68,7 +67,6 @@ void *lets_eat(void *argv)
 		}
 		else
 			return (NULL);
-		//printf("hola philo %d %ld\n", philo->index, philo->last_meal);
 	}
 	return (NULL);
 }

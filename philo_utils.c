@@ -59,7 +59,6 @@ int	ft_error(int flag)
 	if (flag == 4)
 		printf("Error. Time to die cannot be lower than 60\n");
 	return (1);
-
 }
 
 int	check_errors(int argc, char **argv)
@@ -69,7 +68,7 @@ int	check_errors(int argc, char **argv)
 
 	i = 1;
 	if (argc <= 4 || argc > 6)
-		return(ft_error(1));
+		return (ft_error(1));
 	while (argv[i])
 	{
 		j = 0;
@@ -88,10 +87,10 @@ int	check_errors(int argc, char **argv)
 	return (0);
 }
 
-time_t ft_gettime(void)
+time_t	ft_gettime(void)
 {
 	struct timeval	time;
-	
+
 	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }

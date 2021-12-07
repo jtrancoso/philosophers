@@ -12,8 +12,8 @@
 
 #include "philo.h"
 
-//FIXME: da segfault cuando muere un philo y esta el atexit puesto, si es por que todos han comido, no pasa
-
+//FIXME: da segfault cuando muere un philo y esta el atexit puesto, si es por que todos han comido, no pasa con los impares (a veces)
+//TODO: mirar lo de la doble estructura
 void	miraleaks(void)
 {
 	system("leaks philo");
@@ -49,8 +49,6 @@ void	*lets_die(void *argv)
 	}
 }
 
-//TODO: mirar que paren los hilos cuando mueran
-
 void	death_threads(t_data *data)
 {
 	pthread_create(&data->check_death, NULL, lets_die, data);
@@ -59,7 +57,7 @@ void	death_threads(t_data *data)
 
 void	create_threads(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->number)
@@ -72,39 +70,13 @@ void	create_threads(t_data *data)
 	}
 }
 
-/*void	end_threads(t_data *data)
-{
-	int i;
-
-	i = 0;
-	while (i < data->number)
-	{
-		pthread_mutex_destroy(&data->philo[i].fork);
-		i++;
-	}
-	printf("destruidos\n");
-}*/
-
-void	free_philo(t_data *data)
-{
-	int i;
-
-	i = 0;
-	while (i < data->number)
-	{
-		pthread_join(data->philo[i].thread, NULL);
-		i++;
-	}
-	free(data->philo);
-}
-
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	int i;
+	int		i;
 
 	i = 0;
-	atexit(miraleaks);
+	//atexit(miraleaks);
 	if (check_errors(argc, argv))
 		return (1);
 	init_things(&data, argc, argv);
@@ -115,6 +87,6 @@ int	main(int argc, char **argv)
 		death_threads(&data);
 	}
 	free(data.philo);
-	//free_philo(&data);
+	//system("leaks philo");
 	return (0);
 }

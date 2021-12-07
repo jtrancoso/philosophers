@@ -6,7 +6,7 @@
 /*   By: jtrancos <jtrancos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:54:33 by jtrancos          #+#    #+#             */
-/*   Updated: 2021/12/07 14:10:07 by jtrancos         ###   ########.fr       */
+/*   Updated: 2021/12/07 17:08:15 by jtrancos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ void	init_things(t_data *data, int argc, char **argv)
 	data->tt_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		data->meals = ft_atoi(argv[5]);
-	data->start_time = ft_gettime();
 }
 
 void	init_philos(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	data->philo = malloc(sizeof(t_philo) * data->number);
@@ -39,4 +38,5 @@ void	init_philos(t_data *data)
 		i++;
 	}
 	pthread_mutex_init(&data->print, NULL);
+	data->start_time = ft_gettime();
 }

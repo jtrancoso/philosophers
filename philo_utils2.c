@@ -6,7 +6,7 @@
 /*   By: jtrancos <jtrancos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:56:02 by jtrancos          #+#    #+#             */
-/*   Updated: 2021/12/07 14:32:05 by jtrancos         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:31:24 by jtrancos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*print_status(t_philo *philo, long time, int num, int flag)
 {
-	time_t print_time;
+	time_t	print_time;
 
 	print_time = time - philo->data->start_time;
 	num += 1;
@@ -29,7 +29,8 @@ void	*print_status(t_philo *philo, long time, int num, int flag)
 	if (flag == 4)
 		printf("%ld Philo %d has died\n", print_time, num);
 	if (flag == 5)
-		printf("%ld All philosophers have eaten %d times\n", print_time, philo->data->meals);
+		printf("%ld All philosophers have eaten %d times\n", \
+		print_time, philo->data->meals);
 	return (NULL);
 }
 

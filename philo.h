@@ -13,13 +13,13 @@
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <pthread.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/time.h>
-#include <stdlib.h>
+# include <pthread.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <sys/time.h>
+# include <stdlib.h>
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	int				full;
 	int				index;
@@ -44,11 +44,11 @@ typedef struct s_data
 
 }		t_data;
 
-int	ft_isdigit(int c);
-int	ft_atoi(const char *s);
-int	check_errors(int argc, char **argv);
-int	ft_error(int flag);
-time_t ft_gettime(void);
+int		ft_isdigit(int c);
+int		ft_atoi(const char *s);
+int		check_errors(int argc, char **argv);
+int		ft_error(int flag);
+time_t	ft_gettime(void);
 void	init_things(t_data *data, int argc, char **argv);
 void	init_philos(t_data *data);
 void	*print_status(t_philo *philo, long time, int num, int flag);
@@ -57,15 +57,5 @@ void	ft_delay(t_philo *philo, int i);
 void	*lets_eat(void *argv);
 void	take_fork(t_philo *philo, int i, int next);
 void	sleep_think(t_philo *philo, int i, int next, int loop);
-
-
-
-
-
-
-
-
-
-
 
 #endif
