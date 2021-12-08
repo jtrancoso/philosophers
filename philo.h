@@ -26,7 +26,7 @@ typedef struct s_philo
 	time_t			last_meal;
 	pthread_t		thread;
 	pthread_mutex_t	fork;
-	struct s_data	*data;
+
 }				t_philo;
 
 typedef struct s_data
@@ -51,11 +51,11 @@ int		ft_error(int flag);
 time_t	ft_gettime(void);
 void	init_things(t_data *data, int argc, char **argv);
 void	init_philos(t_data *data);
-void	*print_status(t_philo *philo, long time, int num, int flag);
+void	*print_status(t_data *data, long time, int num, int flag);
 void	ft_sleep(time_t time);
-void	ft_delay(t_philo *philo, int i);
+void	ft_delay(t_data *data, int i);
 void	*lets_eat(void *argv);
-void	take_fork(t_philo *philo, int i, int next);
-void	sleep_think(t_philo *philo, int i, int next, int loop);
+void	take_fork(t_data *data, int i, int next);
+void	sleep_think(t_data *data, int i, int next, int loop);
 
 #endif

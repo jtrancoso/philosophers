@@ -12,13 +12,6 @@
 
 #include "philo.h"
 
-//FIXME: da segfault cuando muere un philo y esta el atexit puesto, si es por que todos han comido, no pasa con los impares (a veces)
-//TODO: mirar lo de la doble estructura
-void	miraleaks(void)
-{
-	system("leaks philo");
-}
-
 void	*lets_die(void *argv)
 {
 	int		i;
@@ -36,14 +29,11 @@ void	*lets_die(void *argv)
 			time = ft_gettime();
 			pthread_mutex_lock(&data->print);
 			if (data->philo[i].last_meal + data->tt_die < time)
-				return (print_status(data->philo, time, data->philo[i].index, 4));
+				return (print_status(data, time, i, 4));
 			pthread_mutex_unlock(&data->print);
 			count += data->philo[i].full;
 			if (count == data->number)
-			{
-				pthread_mutex_lock(&data->print);
-				return (print_status(data->philo, time, data->philo[i].index, 5));
-			}
+				return (print_status(data, time, i, 5));
 			i++;
 		}
 	}
@@ -63,8 +53,7 @@ void	create_threads(t_data *data)
 	while (i < data->number)
 	{
 		data->philo[i].index = i;
-		data->philo[i].data = data;
-		pthread_create(&data->philo[i].thread, NULL, lets_eat, &data->philo[i]);
+		pthread_create(&data->philo[i].thread, NULL, lets_eat, data);
 		pthread_detach(data->philo[i].thread);
 		i++;
 	}
@@ -73,10 +62,7 @@ void	create_threads(t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	int		i;
 
-	i = 0;
-	//atexit(miraleaks);
 	if (check_errors(argc, argv))
 		return (1);
 	init_things(&data, argc, argv);
@@ -86,7 +72,7 @@ int	main(int argc, char **argv)
 		create_threads(&data);
 		death_threads(&data);
 	}
-	free(data.philo);
-	//system("leaks philo");
+	if (data.philo)
+		free(data.philo);
 	return (0);
 }

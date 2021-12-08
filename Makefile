@@ -7,14 +7,15 @@ SRCS =	main.c \
 OBJS = ${SRCS:.c=.o}
 NAME = philo
 THREADS = -pthread
+CFLAGS = -Werror -Wall -Wextra
 CC = gcc
 RM = rm -f
 
 .c.o:
-		${CC} -g3 -c $< -o ${<:.c=.o}
+		${CC} ${CFLAGS} -g3 -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-			$(CC) -fsanitize=thread -g3 ${OBJS} -o ${NAME} -pthread
+			$(CC) -g3 ${OBJS} -o ${NAME} -pthread
 # COMPILAR MAC $(CC) -fsanitize=address -g ${OBJS} -o ${NAME}
 # COMPILAR LINUX $(CC) -fsanitize=address -g -o ${NAME} ${OBJS}
 
