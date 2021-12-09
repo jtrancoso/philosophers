@@ -61,5 +61,4 @@ void	sleep_think(t_data *data, int i, int next, int loop);
 void	death_threads(t_data *data);
 void	*lets_die(void *argv);
 
-
 #endif
