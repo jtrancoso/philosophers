@@ -6,7 +6,7 @@
 /*   By: jtrancos <jtrancos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:58:28 by jtrancos          #+#    #+#             */
-/*   Updated: 2021/12/08 14:05:36 by jtrancos         ###   ########.fr       */
+/*   Updated: 2021/12/09 13:21:33 by jtrancos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,18 @@ void	*lets_eat(void *argv)
 			return (NULL);
 	}
 	return (NULL);
+}
+
+void	eating_threads(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->number)
+	{
+		data->philo[i].index = i;
+		pthread_create(&data->philo[i].thread, NULL, lets_eat, data);
+		pthread_detach(data->philo[i].thread);
+		i++;
+	}
 }

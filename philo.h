@@ -54,8 +54,12 @@ void	init_philos(t_data *data);
 void	*print_status(t_data *data, long time, int num, int flag);
 void	ft_sleep(time_t time);
 void	ft_delay(t_data *data, int i);
+void	eating_threads(t_data *data);
 void	*lets_eat(void *argv);
 void	take_fork(t_data *data, int i, int next);
 void	sleep_think(t_data *data, int i, int next, int loop);
+void	death_threads(t_data *data);
+void	*lets_die(void *argv);
+
 
 #endif

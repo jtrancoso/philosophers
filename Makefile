@@ -2,7 +2,8 @@ SRCS =	main.c \
 		philo_utils.c \
 		philo_utils2.c \
 		init_philo.c \
-		eating_loop.c
+		eating_loop.c \
+		death_loop.c
 		
 OBJS = ${SRCS:.c=.o}
 NAME = philo
@@ -15,9 +16,7 @@ RM = rm -f
 		${CC} ${CFLAGS} -g3 -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-			$(CC) -g3 ${OBJS} -o ${NAME} -pthread
-# COMPILAR MAC $(CC) -fsanitize=address -g ${OBJS} -o ${NAME}
-# COMPILAR LINUX $(CC) -fsanitize=address -g -o ${NAME} ${OBJS}
+			$(CC) -g3 ${OBJS} -o ${NAME} ${THREADS}
 
 all:		${NAME}
 
@@ -27,9 +26,6 @@ clean:
 fclean : 	clean
 			${RM} ${NAME}
 
-leaks:		${OBJS}
-			$(CC) ${OBJS} -o ${NAME} -pthread
-
 re:			fclean all
 
-.PHONY:		re all clean fclean leaks
+.PHONY:		re all clean fclean
